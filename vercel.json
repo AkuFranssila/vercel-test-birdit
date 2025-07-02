@@ -1,10 +1,17 @@
 {
-  "version": 2,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self'; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://*.auth0.com https://dev-g3mz4lj467b8xzhy.eu.auth0.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.auth0.com;"
+        }
+      ]
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
